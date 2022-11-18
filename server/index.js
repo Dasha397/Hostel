@@ -16,15 +16,6 @@ app.use('/api', router) // обработка router по /api
 
 app.use(errorHandler) // обработка ошибок, последний middleware
 
-// app.get('/users', async (req, res) => {
-// 	const users = models.User.findAll().then(() => {
-// 		res.json(users)
-// 	})
-// 	// setTimeout(() => {
-// 	// 	res.json(users)
-// 	// }, 3000)
-// })
-
 const start = async () => {
 	try {
 		await sequelize.authenticate()
