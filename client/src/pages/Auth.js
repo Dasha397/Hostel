@@ -42,22 +42,6 @@ const Auth = () => {
 								</Link>
 							</div>
 						}
-						{/* {isLogin ?
-							<div className='d-flex align-items-center' style={{ width: 'auto' }}>
-								Нет аккаунта?
-								<Link to={REGISTRATION_ROUTE} className='ms-1 nav-link text-primary'>
-									Зарегистрируйтесь
-								</Link>
-
-							</div>
-							:
-							<div className='d-flex align-items-center' style={{ width: 'auto' }}>
-								Есть аккаунт?
-								<Link to={LOGIN_ROUTE} className='ms-1 nav-link text-primary'>
-									Войдите
-								</Link>
-							</div>
-						} */}
 						<Button variant='outline-success' style={{ width: 'auto' }}>
 							{isLogin ? 'Войти' : 'Зарегистрироваться'}
 						</Button>
