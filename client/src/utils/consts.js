@@ -1,0 +1,11 @@
+export const ADMIN_ROUTE = '/admin'
+// 1 component another pages
+export const LOGIN_ROUTE = '/login'
+export const REGISTRATION_ROUTE = '/registration'
+export const PROFILE_ROUTE = '/profile'
+export const CREATE_STUDENT_ROUTE = '/create'
+export const ACCOMMODATION_ROUTE = '/accommodation'
+export const BENEFIT_ROUTE = '/benefit'
+export const PENALTY_ROUTE = '/penalty'
+export const STUDENTS_ROUTE = '/students'
+export const QUEUE_ROUTE = '/queue'
