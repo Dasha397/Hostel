@@ -1,0 +1,2 @@
+# HOSTEL
+## This project is about a student hostel. There students can apply for accommodation and view information about themselves. The administration reviews applications and checks in/out students.
