@@ -6,7 +6,7 @@ import Auth from '../pages/Auth'
 
 function AppRouter() { // описывается логика навигации по странице: тоьлко авторизованные или все
 	const { user } = useContext(Context);
-	console.log(user)
+	//console.log(user)
 	return (
 		<Routes>
 			{/* {user.isAuth &&*/ authRoutes.map((props) =>
