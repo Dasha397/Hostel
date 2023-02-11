@@ -4,17 +4,22 @@ import StudentBar from '../components/StudentBar';
 
 function Benefit() {
 	return (
-		<Container className='d-flex mt-5' style={{ width: 1000 }}>
+		<Container className='d-flex mt-5 justify-content-between' style={{ width: 1100 }}>
 			<StudentBar />
 			<Card bg={'light'}
 				key={'light'}
 				text={'dark'}
-				style={{ width: 600 }}
+				style={{ width: 800 }}
 				className='p-5 ms-5 d-flex flex-column'>
 				<Card.Title className='mb-3 m-auto'>
 					<h4>Информация о льготах</h4>
 				</Card.Title>
 				<Card.Body>
+
+					{/* <p>
+						Информация о льготах отсутствует
+					</p> */}
+
 					<Table striped bordered hover>
 						<thead>
 							<tr>
