@@ -14,6 +14,7 @@ const generateJwt = (id, login, role) => {
 class UserController {
 	// work
 	async registration(req, res, next) {
+		//console.log(req.body)
 		const { login, password, role } = req.body
 
 		if (!login || !password) {
@@ -34,6 +35,7 @@ class UserController {
 
 	// work
 	async login(req, res, next) {
+		console.log(req);
 		const { login, password } = req.body
 		const user = await User.findOne({ where: { login } })
 		if (!user) {

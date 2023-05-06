@@ -10,12 +10,12 @@ const User = sequelize.define('user', {
 
 const Student = sequelize.define('student', {
 	id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-	name: { type: DataTypes.STRING },
-	surname: { type: DataTypes.STRING },
-	patronymic: { type: DataTypes.STRING },
-	gender: { type: DataTypes.STRING },
-	group: { type: DataTypes.STRING },
-	phone: { type: DataTypes.STRING, unique: true },
+	name: { type: DataTypes.STRING, allowNull: false },
+	surname: { type: DataTypes.STRING, allowNull: false },
+	patronymic: { type: DataTypes.STRING, allowNull: false },
+	gender: { type: DataTypes.STRING, allowNull: false },
+	group: { type: DataTypes.STRING, allowNull: false },
+	phone: { type: DataTypes.STRING, allowNull: false },
 
 }, { timestamps: false })
 

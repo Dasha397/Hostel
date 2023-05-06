@@ -14,7 +14,7 @@ root.render(
   <React.StrictMode>
     <Context.Provider value={{
       user: new Profile(),
-      students: new StudentProfile(),
+      student: new StudentProfile(),
     }}>
       <App />
     </Context.Provider>

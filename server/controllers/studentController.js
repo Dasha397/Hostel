@@ -4,11 +4,22 @@ const ApiError = require('../error/ApiError')
 class StudentController {
 	async create(req, res, next) {
 		try {
-			const { name, surname, patronymic, gender, group, phone, userId } = req.body
-			const student = await Student.create({ name, surname, patronymic, gender, group, phone, userId })
+			const { name, surname, patronymic, gender, group, phone, user } = req.body
+			//console.log(name, surname, patronymic, gender, group, phone, userId)
+			const student = await Student.create({ name, surname, patronymic, gender, group, phone, userId: user.id }).catch(err => console.log(err))
+			//console.log('fsdf')
+			// const student = await Student.create({
+			// 	name: 'John',
+			// 	surname: 'Doe',
+			// 	patronymic: 'Smith',
+			// 	gender: 'male',
+			// 	group: 'A1',
+			// 	phone: '1234567890',
+			// 	userId: 789
+			// })
 			return res.json(student)
 		} catch (e) {
-			next(ApiError.badRequest(e.message))
+			return next(ApiError.badRequest(e.message))
 		}
 	}
 

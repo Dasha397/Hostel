@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Card, Form, Container, Button, Row, InputGroup } from 'react-bootstrap';
-import { useLocation, Link, useNavigation, useNavigate } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { CREATE_STUDENT_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE } from '../utils/consts';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
 import { login, registration } from '../http/userAPI';
@@ -23,12 +23,18 @@ const Auth = observer(() => {
 				data = await login(log, password)
 			}
 			else {
-				//let response = fetch('api/user/registration').then((res) =>)
+				//let response = fetch('api/user/registration').then((res) =>);
 				data = await registration(log, password)
 			}
-			user.setUser(user)
+
+			user.setUser({
+				id: data.id,
+				login: data.login,
+				role: data.role
+			})
+
 			user.setIsAuth(true)
-			console.log(user.role)
+			//console.log(user._user);
 
 			navigate(!isLogin ? CREATE_STUDENT_ROUTE : PROFILE_ROUTE)
 		} catch (error) {

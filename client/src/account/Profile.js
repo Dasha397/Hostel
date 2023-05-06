@@ -2,14 +2,14 @@ import { makeAutoObservable } from "mobx";
 
 export default class Profile {
 	constructor() {
-		this._isAuth = false
+		this._isAuth = true
 		this._user = {
 			id: 1,
 			login: "user",
 			password: "user",
 			role: "USER",
 		}
-		makeAutoObservable(this) // теперь mobx следит за изменениями и рендерит
+		//makeAutoObservable(this) // теперь mobx следит за изменениями и рендерит
 	}
 
 	setIsAuth(bool) {
@@ -20,11 +20,11 @@ export default class Profile {
 		this._user = user
 	}
 
-	get isAuth() { // компьютед функции, вызываются если значение было изменено, оптимизация
+	getisAuth() { // компьютед функции, вызываются если значение было изменено, оптимизация
 		return this._isAuth
 	}
 
-	get user() {
+	getuser() {
 		return this._user
 	}
 }

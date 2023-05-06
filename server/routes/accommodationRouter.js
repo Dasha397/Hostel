@@ -6,6 +6,6 @@ const checkRole = require('../middleware/checkRoleMiddleware')
 router.post('/', accommodationController.create)
 router.get('/', accommodationController.getAll)
 router.get('/:id', accommodationController.getOne)
-router.patch('/', checkRole('ADMIN'), accommodationController.update)
+router.patch('/', accommodationController.update) //checkRole('ADMIN')
 
 module.exports = router

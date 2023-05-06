@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { LOGIN_ROUTE } from '../utils/consts';
 import { Button, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { BsSnow } from 'react-icons/bs'
+// import { BsSnow } from 'react-icons/bs'
 import { observer } from "mobx-react-lite"
 
 const NavBar = observer(() => {
