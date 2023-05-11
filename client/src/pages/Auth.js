@@ -1,20 +1,25 @@
 import React, { useContext, useState } from 'react';
 import { Card, Form, Container, Button, Row, InputGroup } from 'react-bootstrap';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
-import { CREATE_STUDENT_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE } from '../utils/consts';
+import { QUEUE_ROUTE, CREATE_STUDENT_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE } from '../utils/consts';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai'
-import { login, registration } from '../http/userAPI';
+import { login, registration, findStudent } from '../http/userAPI';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../index';
 
 const Auth = observer(() => {
 	const { user } = useContext(Context)
+	const { student } = useContext(Context)
 	const location = useLocation()
 	const navigate = useNavigate()
 	const isLogin = location.pathname === LOGIN_ROUTE
 	const [isPasswordVisible, setPasswordVisibility] = useState(false)
 	const [log, setLog] = useState('')
 	const [password, setPassword] = useState('')
+
+	user.setIsAuth(false)
+	localStorage.setItem('isAuth', false)
+	localStorage.clear();
 
 	const click = async () => {
 		try {
@@ -33,10 +38,24 @@ const Auth = observer(() => {
 				role: data.role
 			})
 
-			user.setIsAuth(true)
-			//console.log(user._user);
+			if (isLogin && user._user.role === 'USER') {
+				try {
+					const getStudent = await findStudent(user)
+					console.log(user, getStudent);
+					student.setStudent(getStudent)
+					localStorage.setItem('student', JSON.stringify(student._student))
+				} catch (e) {
+					console.log(e)
+				}
+			}
 
-			navigate(!isLogin ? CREATE_STUDENT_ROUTE : PROFILE_ROUTE)
+			user.setIsAuth(true)
+			localStorage.setItem('isAuth', true)
+			localStorage.setItem('user', JSON.stringify(user._user))
+
+			if (user._user.role === 'USER') navigate(!isLogin ? CREATE_STUDENT_ROUTE : PROFILE_ROUTE)
+			else navigate(QUEUE_ROUTE)
+
 		} catch (error) {
 			alert(error.response.data.message)
 		}

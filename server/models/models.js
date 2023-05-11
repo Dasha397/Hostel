@@ -21,8 +21,7 @@ const Student = sequelize.define('student', {
 
 const Request = sequelize.define('request', {
 	id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-	application_date: { type: DataTypes.DATE },
-
+	application_date: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
 }, { timestamps: false })
 
 const Accommodation_information = sequelize.define('accommodation_information', {
