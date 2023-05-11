@@ -1,4 +1,4 @@
-import { ACCOMMODATION_ROUTE, BENEFIT_ROUTE, CREATE_STUDENT_ROUTE, LOGIN_ROUTE, PENALTY_ROUTE, PROFILE_ROUTE, QUEUE_ROUTE, REGISTRATION_ROUTE, STUDENTS_ROUTE } from "./utils/consts"
+import { ACCOMMODATION_ROUTE, BENEFIT_ROUTE, CREATE_STUDENT_ROUTE, LOGIN_ROUTE, PENALTY_ROUTE, PROFILE_ROUTE, QUEUE_ROUTE, REGISTRATION_ROUTE, RESIDENT_ROUTE, STUDENTS_ROUTE } from "./utils/consts"
 import AccommodationInformation from './pages/AccommodationInfo'
 import CreateStudent from './pages/CreateStudent'
 import StudentsList from './pages/StudentsList'
@@ -7,6 +7,7 @@ import Auth from './pages/Auth'
 import Profile from "./pages/Profile"
 import Benefit from "./pages/Benefits"
 import Penalty from "./pages/Penalties"
+import Resident from "./pages/Resident"
 
 export const authRoutes = [
 	{
@@ -37,6 +38,10 @@ export const authRoutes = [
 		path: QUEUE_ROUTE,
 		element: <Queue />
 	},
+	{
+		path: RESIDENT_ROUTE,
+		element: <Resident />
+	}
 ]
 
 export const publicRoutes = [

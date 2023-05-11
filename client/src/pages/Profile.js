@@ -4,12 +4,16 @@ import StudentBar from '../components/StudentBar';
 import woman from '../assets/woman.png'
 import man from '../assets/man.png'
 import { Context } from '../index'
+import { observer } from 'mobx-react-lite';
 
-function Profile() {
-	//const { user } = useContext(Context)
+const Profile = observer(() => {
+	const { user } = useContext(Context)
 	const { student } = useContext(Context)
 
-	//students.setSelectedStudent(students.students.find((student) => student.user_id === user._user.id))
+	if (!student._student || !Object.keys(student._student).length) {
+		student._student = JSON.parse(localStorage.getItem('student'))
+	}
+
 	return (
 		<Container className='d-flex mt-5 justify-content-between' style={{ width: 1100 }}>
 			<StudentBar />
@@ -18,7 +22,7 @@ function Profile() {
 				text={'dark'}
 				style={{ width: 800 }}
 				className='p-5 ms-5 d-flex flex-column'>
-				<Card.Img variant="top" src={student._student.gender === "M" ? man : woman} style={{ width: 160 }} className='ms-3 mb-3' />
+				<Card.Img variant="top" src={student._student.gender === "М" ? man : woman} style={{ width: 160 }} className='ms-3 mb-3' />
 				<Card.Body>
 					<Card.Title>
 						<h4>
@@ -34,6 +38,6 @@ function Profile() {
 			</Card>
 		</Container >
 	);
-};
+});
 
 export default Profile;
