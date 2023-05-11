@@ -4,14 +4,16 @@ const ApiError = require('../error/ApiError')
 class AccommodationController {
 	async create(req, res, next) {
 		try {
-			const { requestId } = req.body
+			console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqq', req.body)
+			const { request } = req.body
 			const { id: defaultStatus } = await Status.findOne({
 				where: {
 					type: "В очереди"
 				}
 			})
-			const accommodation = await Accommodation_information.create({ requestId, statusId: defaultStatus })
 
+			const accommodation = await Accommodation_information.create({ requestId: request.id, statusId: defaultStatus })
+			// console.log(accommodation)
 			return res.json(accommodation)
 		} catch (e) {
 			next(ApiError.badRequest(e.message))
@@ -47,7 +49,9 @@ class AccommodationController {
 	}
 
 	async getOne(req, res) {
-		//const { id }
+		const accommodation = await Accommodation_information.findOne({ where: { requestId: req.params.id } })
+		//console.log(accommodation)
+		return res.json(accommodation)
 	}
 }
 
