@@ -10,12 +10,16 @@ const CreateStudent = observer(() => {
 	const navigate = useNavigate()
 	// const [value, setValue] = useState()
 	const { user } = useContext(Context)
+	//console.log(user._user)
+	if (!Object.keys(user._user).length) {
+		user.setUser(JSON.parse(localStorage.getItem('user')))
+	}
 	const { student } = useContext(Context)
 	const [name, setName] = useState('')
 	const [secondName, setSecondName] = useState('')
 	const [patronymic, setPatronymic] = useState('')
 	const [group, setGroup] = useState('')
-	const [gender, setGender] = useState('M')
+	const [gender, setGender] = useState('М')
 	const [phone, setPhone] = useState('')
 
 	const click = async () => {
@@ -40,20 +44,12 @@ const CreateStudent = observer(() => {
 			return;
 		}
 
-		const newStudent = {
-			user_id: user._user.id,
-			name: name,
-			surname: secondName,
-			patronymic: patronymic,
-			gender: gender,
-			phone: phone,
-			group: group
-		};
-		student.setStudent(newStudent);
 		//console.log(student);
 		let data = await createStudent(name, secondName, patronymic, gender, group, phone, user._user);
 		// students._students.push(student);
-		console.log(data)
+		//console.log(data)
+		student.setStudent(data);
+		localStorage.setItem('student', JSON.stringify(student._student))
 		navigate(PROFILE_ROUTE);
 	}
 
@@ -105,12 +101,16 @@ const CreateStudent = observer(() => {
 							<option>М</option>
 							<option>Ж</option>
 						</Form.Control> */}
-						<Col sm="9">
-							<Form.Control
-								placeholder="Пол"
-								value={gender}
-								onChange={e => setGender(e.target.value)} />
-						</Col>
+
+						<Form.Select
+							style={{ width: 163, color: "gray" }}
+							value={gender}
+							onChange={e => setGender(e.target.value)} >
+							<option disabled>Выберите пол</option>
+							<option>М</option>
+							<option>Ж</option>
+						</Form.Select>
+
 
 					</Row>
 					<Row className='mt-4'>

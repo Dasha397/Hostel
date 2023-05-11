@@ -6,7 +6,7 @@ class StudentController {
 		try {
 			const { name, surname, patronymic, gender, group, phone, user } = req.body
 			//console.log(name, surname, patronymic, gender, group, phone, userId)
-			const student = await Student.create({ name, surname, patronymic, gender, group, phone, userId: user.id }).catch(err => console.log(err))
+			const student = await Student.create({ name, surname, patronymic, gender, group, phone, userId: user.id }).catch(e => { console.log(e) })
 			//console.log('fsdf')
 			// const student = await Student.create({
 			// 	name: 'John',
@@ -17,6 +17,7 @@ class StudentController {
 			// 	phone: '1234567890',
 			// 	userId: 789
 			// })
+			console.log(student.data)
 			return res.json(student)
 		} catch (e) {
 			return next(ApiError.badRequest(e.message))
@@ -92,9 +93,10 @@ class StudentController {
 		return res.json(students)
 	}
 
-	async getOne(req, res, next) {
+	async getOneByUserId(req, res, next) {
 		try {
-			const student = await Student.findOne({ where: { id: req.params.id } }) // student/id
+			//console.log(req.params.id)
+			const student = await Student.findOne({ where: { userId: req.params.id } }) // student/id
 			return res.json(student)
 		} catch (e) {
 			next(ApiError.badRequest(e.message))

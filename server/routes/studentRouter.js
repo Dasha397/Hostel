@@ -5,7 +5,7 @@ const studentController = require('../controllers/studentController')
 
 router.post('/', studentController.create) //checkRole('USER')
 router.get('/', studentController.getAll) //checkRole('ADMIN')
-router.get('/:id', studentController.getOne)
+router.get('/:id', studentController.getOneByUserId)
 router.patch('/:id', studentController.update)
 
 module.exports = router
