@@ -9,7 +9,7 @@ export default class Profile {
 			password: "user",
 			role: "USER",
 		}
-		//makeAutoObservable(this) // теперь mobx следит за изменениями и рендерит
+		makeAutoObservable(this) // теперь mobx следит за изменениями и рендерит
 	}
 
 	setIsAuth(bool) {
